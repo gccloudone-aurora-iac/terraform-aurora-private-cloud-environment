@@ -28,6 +28,10 @@ variable "openstack_region" {
   description = "OpenStack region where to deploy the cluster."
 }
 
+variable "router_name" {
+  description = "The name of the router to attach to the Vault cluster subnet."
+}
+
 ######################################
 ### Rancher Cluster Infrastructure ###
 ######################################
