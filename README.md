@@ -43,7 +43,7 @@ Examples for this module along with various configurations can be found in the [
 
 | Name | Description | Type | Default | Required |
 | ---- | ----------- | ---- | ------- | :------: |
-| <a name="input_cluster_name"></a> [cluster\_name](#input\_cluster\_name) | The name of the Rancher Cluster. | `list(string)` | n/a | yes |
+| <a name="input_cluster_name"></a> [cluster\_name](#input\_cluster\_name) | The name of the Rancher Cluster. | `string` | n/a | yes |
 | <a name="input_cluster_operators"></a> [cluster\_operators](#input\_cluster\_operators) | A list of Rancher user IDs to indicate the operators of the cluster. | `list(string)` | n/a | yes |
 | <a name="input_dns_nameservers"></a> [dns\_nameservers](#input\_dns\_nameservers) | A list of DNS servers to advertise to clients on the network. | `list(string)` | n/a | yes |
 | <a name="input_kubernetes_version"></a> [kubernetes\_version](#input\_kubernetes\_version) | The Kubernetes version used by the control plane & the default version for the agent nodes. | `string` | n/a | yes |
