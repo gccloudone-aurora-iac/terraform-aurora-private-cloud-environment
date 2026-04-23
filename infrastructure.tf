@@ -5,12 +5,12 @@
 module "infrastructure" {
   source = "git::https://github.com/gccloudone-aurora-iac/terraform-rancher-kubernetes-cluster.git?ref=main"
 
-  application_credential_id     = var.openstack_application_credential_id
-  application_credential_secret = var.openstack_application_credential_secret
-  domain_id                     = var.openstack_domain_id
-  project_id                    = var.openstack_project_id
-  auth_url                      = var.openstack_auth_url
-  region                        = var.openstack_region
+  openstack_application_credential_id     = var.openstack_application_credential_id
+  openstack_application_credential_secret = var.openstack_application_credential_secret
+  openstack_domain_id                     = var.openstack_domain_id
+  openstack_project_id                    = var.openstack_project_id
+  openstack_auth_url                      = var.openstack_auth_url
+  openstack_region                        = var.openstack_region
 
   name = var.cluster_name
 
