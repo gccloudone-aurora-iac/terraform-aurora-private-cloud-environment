@@ -14,8 +14,6 @@ module "infrastructure" {
 
   name = var.cluster_name
 
-  network_id = module.network_system.id
-
   loadbalancer_network_id = module.network_loadbalancer.id
 
   kubernetes_version = var.kubernetes_version
