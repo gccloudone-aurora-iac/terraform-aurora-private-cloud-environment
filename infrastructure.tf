@@ -21,11 +21,12 @@ module "infrastructure" {
   kubernetes_version = var.kubernetes_version
 
   control_pool = {
-    name    = "control"
+    name    = "system"
     flavour = "g4v-16"
     count   = 1
     labels = {
-
+      "node.ssc-spc.gc.ca/use" = "general"
+      "node.ssc-spc.gc.ca/purpose" = "system"
     }
     taints          = []
     security_groups = ["default"]
@@ -42,8 +43,38 @@ module "infrastructure" {
     count   = 1
     labels = {
       "node.ssc-spc.gc.ca/use" = "general"
+      "node.ssc-spc.gc.ca/purpose" = "general"
     }
-    taints          = []
+    taints = [
+      {
+        key    = "CriticalAddonsOnly"
+        value  = "true"
+        effect = "NoSchedule"
+      }
+    ]
+    security_groups = ["default"]
+    volume_type     = "performance"
+    volume_size     = 60
+    roles           = ["worker"]
+    network_id      = openstack_networking_network_v2.aurora_cluster.id
+    subnet_id       = openstack_networking_subnet_v2.node_subnet.id
+  }
+
+  additional_pools = {
+    name    = "gateway"
+    flavour = "g4v-16"
+    count   = 1
+    labels = {
+      "node.ssc-spc.gc.ca/use" = "general"
+      "node.ssc-spc.gc.ca/purpose" = "gateway"
+    }
+    taints = [
+      {
+        key    = "node.ssc-spc.gc.ca/purpose"
+        value  = "gateway"
+        effect = "NoSchedule"
+      }
+    ]
     security_groups = ["default"]
     volume_type     = "performance"
     volume_size     = 60
