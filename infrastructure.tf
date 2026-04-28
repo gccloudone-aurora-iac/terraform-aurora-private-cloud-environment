@@ -14,9 +14,9 @@ module "infrastructure" {
 
   name = var.cluster_name
 
-  network_id = openstack_networking_network_v2.aurora_cluster.id
+  network_id = module.network_system.id
 
-  loadbalancer_network_id = openstack_networking_network_v2.aurora_cluster.id
+  loadbalancer_network_id = module.network_loadbalancer.id
 
   kubernetes_version = var.kubernetes_version
 
@@ -33,8 +33,8 @@ module "infrastructure" {
     volume_type     = "performance"
     volume_size     = 60
     roles           = ["etcd", "control"]
-    network_id      = openstack_networking_network_v2.aurora_cluster.id
-    subnet_id       = openstack_networking_subnet_v2.node_subnet.id
+    network_id      = module.network_system.id
+    subnet_id       = module.network_system.subnet_ids[var.network_prefixes["system"].prefixes_v4[0]]
   }
 
   worker_pool = {
@@ -50,8 +50,8 @@ module "infrastructure" {
     volume_type     = "performance"
     volume_size     = 60
     roles           = ["worker"]
-    network_id      = openstack_networking_network_v2.aurora_cluster.id
-    subnet_id       = openstack_networking_subnet_v2.node_subnet.id
+    network_id      = module.network_general.id
+    subnet_id       = module.network_general.subnet_ids[var.network_prefixes["general"].prefixes_v4[0]]
   }
 
   additional_pools = [{
@@ -73,8 +73,8 @@ module "infrastructure" {
     volume_type     = "performance"
     volume_size     = 60
     roles           = ["worker"]
-    network_id      = openstack_networking_network_v2.aurora_cluster.id
-    subnet_id       = openstack_networking_subnet_v2.node_subnet.id
+    network_id      = module.network_gateway.id
+    subnet_id       = module.network_gateway.subnet_ids[var.network_prefixes["gateway"].prefixes_v4[0]]
   }]
 }
 
