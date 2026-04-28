@@ -32,7 +32,6 @@ module "infrastructure" {
     volume_size     = 60
     roles           = ["etcd", "control"]
     network_id      = module.network_system.id
-    subnet_id       = module.network_system.subnet_ids[var.network_prefixes["system"].prefixes_v4[0]]
   }
 
   worker_pool = {
@@ -49,7 +48,6 @@ module "infrastructure" {
     volume_size     = 60
     roles           = ["worker"]
     network_id      = module.network_general.id
-    subnet_id       = module.network_general.subnet_ids[var.network_prefixes["general"].prefixes_v4[0]]
   }
 
   additional_pools = [{
@@ -72,7 +70,6 @@ module "infrastructure" {
     volume_size     = 60
     roles           = ["worker"]
     network_id      = module.network_gateway.id
-    subnet_id       = module.network_gateway.subnet_ids[var.network_prefixes["gateway"].prefixes_v4[0]]
   }]
 }
 

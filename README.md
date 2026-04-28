@@ -27,14 +27,19 @@ Examples for this module along with various configurations can be found in the [
 | Name | Source | Version |
 | ---- | ------ | ------- |
 | <a name="module_infrastructure"></a> [infrastructure](#module\_infrastructure) | git::https://github.com/gccloudone-aurora-iac/terraform-private-cloud-kubernetes-cluster.git | main |
+| <a name="module_network_gateway"></a> [network\_gateway](#module\_network\_gateway) | git::https://github.com/gccloudone-aurora-iac/terraform-private-cloud-openstack-network.git | main |
+| <a name="module_network_general"></a> [network\_general](#module\_network\_general) | git::https://github.com/gccloudone-aurora-iac/terraform-private-cloud-openstack-network.git | main |
+| <a name="module_network_loadbalancer"></a> [network\_loadbalancer](#module\_network\_loadbalancer) | git::https://github.com/gccloudone-aurora-iac/terraform-private-cloud-openstack-network.git | main |
+| <a name="module_network_system"></a> [network\_system](#module\_network\_system) | git::https://github.com/gccloudone-aurora-iac/terraform-private-cloud-openstack-network.git | main |
 
 ## Resources
 
 | Name | Type |
 | ---- | ---- |
-| [openstack_networking_network_v2.aurora_cluster](https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs/resources/networking_network_v2) | resource |
-| [openstack_networking_router_interface_v2.node_subnet](https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs/resources/networking_router_interface_v2) | resource |
-| [openstack_networking_subnet_v2.node_subnet](https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs/resources/networking_subnet_v2) | resource |
+| [openstack_networking_router_interface_v2.gateway](https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs/resources/networking_router_interface_v2) | resource |
+| [openstack_networking_router_interface_v2.general](https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs/resources/networking_router_interface_v2) | resource |
+| [openstack_networking_router_interface_v2.loadbalancer](https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs/resources/networking_router_interface_v2) | resource |
+| [openstack_networking_router_interface_v2.system](https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs/resources/networking_router_interface_v2) | resource |
 | [rancher2_cluster_role_template_binding.cluster_operator](https://registry.terraform.io/providers/rancher/rancher2/latest/docs/resources/cluster_role_template_binding) | resource |
 | [openstack_networking_network_v2.external](https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs/data-sources/networking_network_v2) | data source |
 | [openstack_networking_router_v2.default](https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs/data-sources/networking_router_v2) | data source |
@@ -47,6 +52,7 @@ Examples for this module along with various configurations can be found in the [
 | <a name="input_cluster_operators"></a> [cluster\_operators](#input\_cluster\_operators) | A list of Rancher user IDs to indicate the operators of the cluster. | `list(string)` | n/a | yes |
 | <a name="input_dns_nameservers"></a> [dns\_nameservers](#input\_dns\_nameservers) | A list of DNS servers to advertise to clients on the network. | `list(string)` | n/a | yes |
 | <a name="input_kubernetes_version"></a> [kubernetes\_version](#input\_kubernetes\_version) | The Kubernetes version used by the control plane & the default version for the agent nodes. | `string` | n/a | yes |
+| <a name="input_network_prefixes"></a> [network\_prefixes](#input\_network\_prefixes) | Map of network names and their corresponding IPv4 and IPv6 prefixes | <pre>map(object({<br/>    prefixes_v4     = list(string)<br/>    prefixes_v6     = list(string)<br/>  }))</pre> | <pre>{<br/>  "gateway": {<br/>    "prefixes_v4": [<br/>      "10.0.4.0/24"<br/>    ],<br/>    "prefixes_v6": []<br/>  },<br/>  "general": {<br/>    "prefixes_v4": [<br/>      "10.0.2.0/24"<br/>    ],<br/>    "prefixes_v6": []<br/>  },<br/>  "loadbalancer": {<br/>    "prefixes_v4": [<br/>      "10.0.6.0/24"<br/>    ],<br/>    "prefixes_v6": []<br/>  },<br/>  "system": {<br/>    "prefixes_v4": [<br/>      "10.0.1.0/24"<br/>    ],<br/>    "prefixes_v6": []<br/>  }<br/>}</pre> | no |
 | <a name="input_openstack_application_credential_id"></a> [openstack\_application\_credential\_id](#input\_openstack\_application\_credential\_id) | Application Credential ID used by Rancher to provision on OpenStack. | `any` | n/a | yes |
 | <a name="input_openstack_application_credential_secret"></a> [openstack\_application\_credential\_secret](#input\_openstack\_application\_credential\_secret) | Application Credential Secret used by Rancher to provision on OpenStack. | `any` | n/a | yes |
 | <a name="input_openstack_auth_url"></a> [openstack\_auth\_url](#input\_openstack\_auth\_url) | OpenStack Authentication URL | `any` | n/a | yes |
