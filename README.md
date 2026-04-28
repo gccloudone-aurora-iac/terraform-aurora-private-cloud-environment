@@ -26,7 +26,7 @@ Examples for this module along with various configurations can be found in the [
 
 | Name | Source | Version |
 | ---- | ------ | ------- |
-| <a name="module_infrastructure"></a> [infrastructure](#module\_infrastructure) | git::https://github.com/gccloudone-aurora-iac/terraform-rancher-kubernetes-cluster.git | main |
+| <a name="module_infrastructure"></a> [infrastructure](#module\_infrastructure) | git::https://github.com/gccloudone-aurora-iac/terraform-private-cloud-kubernetes-cluster.git | main |
 
 ## Resources
 
