@@ -1,9 +1,9 @@
 # Deploys Rancher Kubernetes Cluster and its related infrastructure.
 #
-# https://github.com/gccloudone-aurora-iac/terraform-rancher-kubernetes-cluster
+# https://github.com/gccloudone-aurora-iac/terraform-private-cloud-kubernetes-cluster
 #
 module "infrastructure" {
-  source = "git::https://github.com/gccloudone-aurora-iac/terraform-rancher-kubernetes-cluster.git?ref=main"
+  source = "git::https://github.com/gccloudone-aurora-iac/terraform-private-cloud-kubernetes-cluster.git?ref=main"
 
   openstack_application_credential_id     = var.openstack_application_credential_id
   openstack_application_credential_secret = var.openstack_application_credential_secret
