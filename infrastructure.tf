@@ -45,13 +45,7 @@ module "infrastructure" {
       "node.ssc-spc.gc.ca/use" = "general"
       "node.ssc-spc.gc.ca/purpose" = "general"
     }
-    taints = [
-      {
-        key    = "CriticalAddonsOnly"
-        value  = "true"
-        effect = "NoSchedule"
-      }
-    ]
+    taints          = []
     security_groups = ["default"]
     volume_type     = "performance"
     volume_size     = 60
