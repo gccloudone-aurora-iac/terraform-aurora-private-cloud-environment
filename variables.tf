@@ -62,6 +62,32 @@ variable "dns_nameservers" {
   type        = list(string)
 }
 
+variable "network_prefixes" {
+  description = "Map of network names and their corresponding IPv4 and IPv6 prefixes"
+  type = map(object({
+    prefixes_v4     = list(string)
+    prefixes_v6     = list(string)
+  }))
+  default = {
+    system = {
+      prefixes_v4    = ["10.0.1.0/24"]
+      prefixes_v6    = []
+    }
+    general = {
+      prefixes_v4    = ["10.0.2.0/24"]
+      prefixes_v6    = []
+    }
+    gateway = {
+      prefixes_v4    = ["10.0.4.0/24"]
+      prefixes_v6    = []
+    }
+    loadbalancer = {
+      prefixes_v4    = ["10.0.6.0/24"]
+      prefixes_v6    = []
+    }
+  }
+}
+
 ###############################
 ### Platform Infrastructure ###
 ###############################
