@@ -60,7 +60,7 @@ module "infrastructure" {
     subnet_id       = openstack_networking_subnet_v2.node_subnet.id
   }
 
-  additional_pools = {
+  additional_pools = [{
     name    = "gateway"
     flavour = "g4v-16"
     count   = 1
@@ -81,7 +81,7 @@ module "infrastructure" {
     roles           = ["worker"]
     network_id      = openstack_networking_network_v2.aurora_cluster.id
     subnet_id       = openstack_networking_subnet_v2.node_subnet.id
-  }
+  }]
 }
 
 # Provides a Rancher v2 Cluster Role Template Binding resource.
